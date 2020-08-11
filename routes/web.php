@@ -14,3 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
+
+// Admin Auth
+Route::get('admin', 'Admin\AdminController@showLoginForm');
+Route::post('admin', 'Admin\AdminController@login');
+
+// Admin Dashboard
+Route::get('dashboard', 'Admin\DashboardController@index');
