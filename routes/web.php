@@ -16,8 +16,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 
 // Admin Auth
-Route::get('admin', 'Admin\AdminController@showLoginForm');
-Route::post('admin', 'Admin\AdminController@login');
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('login', function(){
+        return redirect('admin');
+    })->name('login');
+    Route::get('admin', 'Admin\AdminController@showLoginForm');
+    Route::post('admin', 'Admin\AdminController@login');
+});
 
-// Admin Dashboard
-Route::get('dashboard', 'Admin\DashboardController@index');
+Route::group(['middleware' => 'auth'], function(){
+    Route::post('logout', 'Admin\AdminController@logout');
+});
+
+Route::group(['middleware' => 'auth'], function(){
+
+    // Admin Dashboard
+    Route::get('dashboard', 'Admin\DashboardController@index');
+
+    // Product Route
+    Route::resource('product', 'Admin\ProductController');
+});
+
+

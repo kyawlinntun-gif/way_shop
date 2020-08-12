@@ -21,4 +21,10 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('fail', 'Username or password is invalid!');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'You are logged out successfully!');
+    }
 }

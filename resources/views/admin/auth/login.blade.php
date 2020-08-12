@@ -30,11 +30,12 @@
             <div class="login-area">
                 <div class="panel panel-bd panel-custom">
                     <div class="panel-heading">
+                        @include('messages.error.fail')
+                        @include('messages.success.success')
                         <div class="view-header">
                             <div class="header-icon">
                                 <i class="pe-7s-unlock"></i>
                             </div>
-                            @include('messages.error.fail')
                             <div class="header-title">
                                 <h3>Login</h3>
                                 <small><strong>Please enter your credentials to login.</strong></small>
